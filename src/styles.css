@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+.required-asterisk {
+    color: red;
+    font-weight: bold;
+    /* margin-left: 3px; */
+    font-size: 1.2em;
+}
+
+.alert {
+    color: red;
+}
+
+.decreaseHeight {
+    color: red;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* .boarder {
+    border-style: groove;
+    border-width: medium;
+
+} */

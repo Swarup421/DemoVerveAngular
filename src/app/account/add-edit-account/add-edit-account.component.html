@@ -1,0 +1,88 @@
+<form [formGroup]="AccountForm" (ngSubmit)="onSubmit()">
+
+    <div *ngIf="act != 0">
+        <label for="formGroupExampleInput" style="color: green;">Name: <span
+                class="editInfo">{{fNameViewforEdit}}</span></label>
+    </div>
+
+    <div *ngIf="act != 0">
+        <label for="formGroupExampleInput" style="color: green;">Branch Name: <span
+                class="editInfo">{{bNameViewForEdit}}</span></label>
+    </div>
+
+    <div class="row" *ngIf="act==0">
+        <div class="col s6">
+            <label for="test1">Select User<span class="required-asterisk">*</span></label>
+            <!-- {{branchDropdown | json}} -->
+            <select name="test1" id="test1" formControlName="userBind" style="display: block !important;">
+                <option value="" class="text-primary font-weight-bolder">--Select User--</option>
+                <option *ngFor="let user of userDropdown" [value]="user.id">
+                    <!-- put in option tag -->
+                    {{user.fName}}
+                </option>
+            </select>
+            <div *ngIf="f['userBind'].touched && f['userBind'].invalid" class="decreaseHeight">
+                <span *ngIf="f['userBind'].errors && f['userBind'].errors['required']">You need to select
+                    a user..</span>
+            </div>
+        </div>
+        <div class="col s6">
+            <label for="BranchDropdown">Select Branch<span class="required-asterisk">*</span></label>
+            <!-- {{branchDropdown | json}} -->
+            <select name="test" id="test" formControlName="branchBind" style="display: block !important;">
+                <option value="" class="text-primary font-weight-bolder">--Select Branch--</option>
+                <option *ngFor="let branch of branchDropdown" [value]="branch.branchid">
+                    {{branch.branchName}}
+                </option>
+            </select>
+            <div *ngIf="f['branchBind'].touched && f['branchBind'].invalid" class="decreaseHeight">
+                <span *ngIf="f['branchBind'].errors && f['branchBind'].errors['required']">You need to select
+                    Branch..</span>
+            </div>
+            <!-- Dropdown Trigger -->
+        </div>
+    </div>
+    <br>
+
+    <div class="form-group">
+        <label for="formGroupExampleInput">Account Number<span class="required-asterisk">*</span></label>
+        <input type="number" class="form-control" name="num" [(ngModel)]="AccountNum" name="accNumber"
+            formControlName="accNumber">
+        <div *ngIf="f['accNumber'].touched && f['accNumber'].invalid" class="decreaseHeight">
+            <span *ngIf="f['accNumber'].errors && f['accNumber'].errors['required']">Account Number Is Required.</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="formGroupExampleInput">Minimum Balance<span class="required-asterisk">*</span></label>
+        <input type="number" class="form-control" name="num" [(ngModel)]="MinimumBal" name="minBal"
+            formControlName="minBal">
+        <div *ngIf="f['minBal'].touched && f['minBal'].invalid" class="decreaseHeight">
+            <span *ngIf="f['minBal'].errors && f['minBal'].errors['required']">Minimum Balance Is Required.</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="formGroupExampleInput">Withdrawl Limit<span class="required-asterisk">*</span></label>
+        <input type="number" class="form-control" name="num" [(ngModel)]="WithdrawlLim" name="withdrawlLim"
+            formControlName="withdrawlLim">
+        <div *ngIf="f['withdrawlLim'].touched && f['withdrawlLim'].invalid" class="decreaseHeight">
+            <span *ngIf="f['withdrawlLim'].errors && f['withdrawlLim'].errors['required']">Withdrwal Limit Is
+                Required.</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="formGroupExampleInput">Balance<span class="required-asterisk">*</span></label>
+        <input type="number" class="form-control" name="num" [(ngModel)]="Balance" name="bal" formControlName="bal">
+        <div *ngIf="f['bal'].touched && f['bal'].invalid" class="decreaseHeight">
+            <span *ngIf="f['bal'].errors && f['bal'].errors['required']">Balance Is Required.</span>
+        </div>
+    </div>
+
+    <div>
+        <button class="btn btn-primary" *ngIf="act==0" [disabled]="!AccountForm.valid">Submit</button>
+        <button class="btn btn-primary" *ngIf="act!=0">Update</button>
+    </div>
+
+</form>

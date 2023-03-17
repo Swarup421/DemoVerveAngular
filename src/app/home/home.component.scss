@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .backgroundImage img {
+    height: 600px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    /* opacity: 0.8; */
+    /* overflow: hidden; */
+    border: 1px solid green;
+    /* background-image: url('/UserRegistration/src/assets/pic1.jpg'); */
+  }
+  /* .backgroundImage img:hover{
+      opacity: 0.9;
+  } */
+  ul  li a{
+    font-weight: bold;
+    /* text-align: justify; 
+     justify-content: center; */
+  }
+  ul .services  li a:hover{
+    background-color: green;
+    color: whitesmoke;
+    border-radius: 1rem;
+  
+  }
+
+  .container {
+    display: block;
+    height: 600px;
+    width: 2000px;
+    padding: 2em;
+  }

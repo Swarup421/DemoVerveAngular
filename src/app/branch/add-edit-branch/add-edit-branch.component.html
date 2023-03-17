@@ -1,0 +1,28 @@
+<form [formGroup]="branchForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+        <label for="formGroupExampleInput">Branch Number<span class="required-asterisk">*</span>
+        </label>
+        <input type="text" class="form-control" name="num" [(ngModel)]="branchNum" name="Bnum" formControlName="Bnum">
+        <div *ngIf="f['Bnum'].touched && f['Bnum'].invalid" class="decreaseHeight">
+            <span *ngIf="f['Bnum'].errors && f['Bnum'].errors['required']">branch number is required.</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="formGroupExampleInput2">Branch Name<span class="required-asterisk">*</span></label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="branchName" name="Bname"
+            formControlName="Bname">
+        <div *ngIf="f['Bname'].touched && f['Bname'].invalid" class="decreaseHeight">
+            <span *ngIf="f['Bname'].errors && f['Bname'].errors['required']">branch name is required.</span>
+        </div>
+    </div>
+    <!-- <div>
+        <button (click)="addBranch()" class="btn btn-primary" *ngIf="bch==0">Submit</button>
+        <button (click)="updateBranch()" class="btn btn-primary" *ngIf="bch.branchid!=0">Update</button>
+    </div> -->
+    
+    <div>
+        <button class="btn btn-primary" *ngIf="bch==0" [disabled]="!branchForm.valid">Submit</button>
+        <button class="btn btn-primary" *ngIf="bch!=0">Update</button>
+    </div>
+</form>

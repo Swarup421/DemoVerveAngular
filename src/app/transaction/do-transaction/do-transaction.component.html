@@ -1,0 +1,76 @@
+<form [formGroup]="TransactionForm" (ngSubmit)="onSubmit()">
+
+    <div class="row">
+        <div class="col s6">
+            <label for="test1">Select Account<span class="required-asterisk">*</span></label>
+            <!-- {{branchDropdown | json}} -->
+            <select name="test1" id="test1" formControlName="accountBind" style="display: block !important;">
+                <option value="" class="text-primary font-weight-bolder">--Select Account--</option>
+                <option *ngFor="let account of AccountDropdown" [value]="account.id">
+                    <!-- put in option tag -->
+                    {{account.accountNumber}}
+                </option>
+            </select>
+            <div *ngIf="f['accountBind'].touched && f['accountBind'].invalid" class="decreaseHeight">
+                <span *ngIf="f['accountBind'].errors && f['accountBind'].errors['required']">You Need To Select
+                    An Account..</span>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <span class="required-asterisk">*</span>Deposit : <input type="radio" name="transactionType"
+        formControlName="transactionType" value="D" />
+        &nbsp;
+    <span class="required-asterisk">*</span>Withdrawl : <input type="radio" name="transactionType"
+        formControlName="transactionType" value="W" />
+    <br>
+
+    <br>
+
+    <div class="form-group">
+        <label for="formGroupExampleInput">Amount<span class="required-asterisk">*</span></label>
+        <input type="number" class="form-control" name="amount" formControlName="amount" style="width: 30em">
+        <div *ngIf="f['amount'].touched && f['amount'].invalid" class="decreaseHeight">
+            <span *ngIf="f['amount'].errors && f['amount'].errors['required']">Required</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="formGroupExampleInput">C100<span class="required-asterisk">*</span></label>
+        <input type="number" class="form-control" name="c100" formControlName="c100" style="width: 20em">
+        <div *ngIf="f['c100'].touched && f['c100'].invalid" class="decreaseHeight">
+            <span *ngIf="f['c100'].errors && f['c100'].errors['required']">Required</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="formGroupExampleInput">C200<span class="required-asterisk">*</span></label>
+        <input type="number" class="form-control" name="c200" formControlName="c200" style="width: 20em">
+        <div *ngIf="f['c200'].touched && f['c200'].invalid" class="decreaseHeight">
+            <span *ngIf="f['c200'].errors && f['c200'].errors['required']">Required</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="formGroupExampleInput">C500<span class="required-asterisk">*</span></label>
+        <input type="number" class="form-control" name="c500" formControlName="c500" style="width: 20em">
+        <div *ngIf="f['c500'].touched && f['c500'].invalid" class="decreaseHeight">
+            <span *ngIf="f['c500'].errors && f['c500'].errors['required']">Required</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="formGroupExampleInput">C2000<span class="required-asterisk">*</span></label>
+        <input type="number" class="form-control" name="c2000" formControlName="c2000" style="width: 20em">
+        <div *ngIf="f['c2000'].touched && f['c2000'].invalid" class="decreaseHeight">
+            <span *ngIf="f['c2000'].errors && f['c2000'].errors['required']">Required</span>
+        </div>
+    </div>
+
+    <div>
+        <button class="btn btn-primary" [disabled]="!TransactionForm.valid">Submit</button>
+    </div>
+
+</form>

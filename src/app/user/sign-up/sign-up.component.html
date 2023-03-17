@@ -1,0 +1,135 @@
+<div class="container boarder">
+
+  <h3 id="reg">Register User</h3>
+
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm, image)" autocomplete="off">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>First Name</label>
+        <input type="text" class="form-control" name="firstName" required formControlName="firstName">
+        <div *ngIf="f['firstName'].touched && f['firstName'].invalid" class="decreaseHeight">
+          <span *ngIf="f['firstName'].errors && f['firstName'].errors['required']">First Name is required.</span>
+        </div>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label>Last Name</label>
+        <input type="text" class="form-control" name="lastName" formControlName="lName">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Email</label>
+        <input type="email" class="form-control" name="eamil" formControlName="email" autocomplete="false" readonly
+          onfocus="this.removeAttribute('readonly');" required>
+        <div *ngIf="f['email'].touched && f['email'].invalid" class="decreaseHeight">
+          <span *ngIf="f['email'].errors && f['email'].errors['required']">E-mail is required.</span>
+          <span *ngIf="f['email'].errors && f['email'].errors['pattern']">wrong E-mail pattern</span>
+        </div>
+      </div>
+      <div class="form-group col-md-6 password">
+        <label for="inputPassword4">Password</label>
+        <input type="password" class="form-control" name="password" formControlName="password"
+          autocomplete="new-password" readonly onfocus="this.removeAttribute('readonly');" required>
+        <div *ngIf="f['password'].touched && f['password'].invalid" class="decreaseHeight">
+          <span *ngIf="f['password'].errors && f['password'].errors['required']">Password is required.</span>
+          <span *ngIf="f['password'].errors && f['password'].errors['pattern']">Password Must Contain One
+            Symbol,number,Capital letter</span>
+          <!-- <span *ngIf="f['password'].errors && f['password'].errors['minLength']">8</span> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label>Confirm Password</label>
+      <input type="password" class="form-control" name="confirm_password" formControlName="confirm_password"
+        autocomplete="new-password" readonly onfocus="this.removeAttribute('readonly');" required>
+      <div *ngIf="f['confirm_password'].touched && f['confirm_password'].invalid" class="decreaseHeight">
+        <span *ngIf="f['confirm_password'].errors && f['confirm_password'].errors['required']">Confirm Password is
+          required.</span>
+        <span *ngIf="f['confirm_password'].errors && f['confirm_password'].errors['confirmedValidator']">Password and
+          Confirm Password must match.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputAddress">Address</label>
+      <input type="text" class="form-control" id="inputAddress" name="address" formControlName="address">
+    </div>
+
+    <div class="form-group col-md-6 p-0">
+      <label>Mobile No</label>
+      <input type="number" class="form-control" name="mobile" appMaxLength formControlName="mobileNo">
+    </div>
+
+    <img [src]="defaultUserimage" style="width:100px; height:80px">
+    <input type="file" id="file-id" accept="image/*" #image ngModel
+      (change)="handleFileInput($any($event.target).files)" />
+
+    <div>
+      <p class="msg_success">{{ msg }}</p>
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="!userForm.valid">Register</button>
+    &nbsp;
+    <button type="button" routerLink="/login" class="btn btn-dark">Login</button>
+
+  </form>
+
+</div>
+
+<!-- 
+<form #registerForm=ngForm (ngSubmit)="onSubmit(registerForm, Image)" autocomplete="off">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>First Name</label>
+      <input type="text" class="form-control" #firstName ngModel name="firstName" required>
+      <div *ngIf="f['firstName'].touched && f['firstName'].invalid" class="decreaseHeight">
+        <span *ngIf="f['firstName'].errors && f['firstName'].errors['required']">First Name is required.</span>
+      </div>
+      
+    </div>
+
+    <div class="form-group col-md-6">
+      <label>Last Name</label>
+      <input type="text" class="form-control" #lName ngModel name="lastName">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Email</label>
+      <input type="email" class="form-control" #email ngModel name="eamil" autocomplete="false" readonly
+        onfocus="this.removeAttribute('readonly');" required>
+      
+    </div>
+    <div class="form-group col-md-6 password">
+      <label for="inputPassword4">Password</label>
+
+      <input type="password" class="form-control" #password ngModel name="password"autocomplete="new-password"
+        readonly onfocus="this.removeAttribute('readonly');" required>
+      
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="inputAddress">Address</label>
+    <input type="text" class="form-control" id="inputAddress" #address ngModel name="address" >
+  </div>
+
+  <div class="form-group col-md-6 p-0">
+    <label>Mobile No</label>
+    <input type="text" class="form-control" #mobileNo ngModel name="mobile">
+  </div>
+
+  <img [src]="defaultUserimage" style="width:100px; height:80px">
+  <input type="file" #Image id="file-id" accept="image/*" (change)="handleFileInput($any($event.target).files)"/>
+
+  <div>
+    <p class="msg_success">{{ msg }}</p>  
+  </div>
+
+  <button type="submit" class="btn btn-success">Register</button>
+  &nbsp;
+  <button type="button" routerLink="/login" class="btn btn-dark">Login</button>
+
+</form> -->

@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: true,
+  rootUrl: 'https://localhost:44324',
 };
 
 /*
@@ -14,3 +15,7 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
+
+//https://localhost:44324/image/image2223551608.jpg
+
+//image/image2222755702.jpg

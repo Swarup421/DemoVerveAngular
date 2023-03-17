@@ -1,0 +1,85 @@
+<app-navbar-view></app-navbar-view><br>
+<!-- <br>
+<Button routerLink="/home">Home</Button> -->
+<div class="container">
+
+    <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash-stack"
+            viewBox="0 0 16 16">
+            <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+            <path
+                d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z" />
+        </svg>
+        <button type="button" class="btn btn-primary col-md-6" data-toggle="modal" data-target="#exampleModal"
+            (click)="open_popup()" data-backdrop="static" data-keyboard="false">
+            Do Transaction
+        </button>
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-funnel-fill float-right" viewBox="0 0 16 16">
+            <path
+                d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z" />
+        </svg>
+        <input type="text" class="form-control col-md-4 float-right" placeholder="Search Here" [(ngModel)]="data">
+
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" data-backdrop="false" id="exampleModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Transaction Form</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeClick()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <app-do-transaction *ngIf="addform == true"></app-do-transaction>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-striped table-bordered table-hover" style="border: 1px solid black;">
+        <thead class="thead-dark">
+            <tr>
+                <!-- {{transactionList|json}} -->
+                <th scope="col" [appSort]="transactionList" data-order="desc" data-name="accountNumber">Account Number
+                </th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Deposit / Withdrawl</th>
+                <th scope="col" [appSort]="transactionList" data-order="desc" data-name="amount">Transaction
+                    Amount</th>
+                <th scope="col" [appSort]="transactionList" data-order="desc" data-name="date">Transaction Date
+                </th>
+            </tr>
+        </thead>
+
+        <tbody
+            *ngFor="let transaction of transactionList | filter: data | paginate:{itemsPerPage: pageSize, currentPage:p} ">
+            <tr>
+                <!-- {{transaction.Account.accountNumber | json}} -->
+                <td>{{transaction.Account.accountNumber == null ? "Not Available" : transaction.Account.accountNumber}}
+                </td>
+                <!-- <td>*ngIf=transaction.Account.accountNumber == null ? "Not Available" : transaction.Account.accountNumber}}></td> -->
+                <td>{{transaction.User.fullName}}</td>
+                <td>{{transaction.transactionType}}</td>
+                <td [ngStyle]="{'color': transaction.transactionType == 'D' ? 'green' : 'red'}">{{transaction.amount}}
+                </td>
+                <td>{{transaction.date}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <pagination-controls (pageChange)="p=$event" class="float-right"></pagination-controls>
+        <label><b>Page Size</b></label>&nbsp;
+        <select class="text-primary font-weight-bolder" [(ngModel)]="pageSize">
+            <option [ngValue]="6">6</option>
+            <option [ngValue]="10">10</option>
+            <option [ngValue]="20">25</option>
+            <option [ngValue]="50">50</option>
+        </select>
+    </div>
+</div>
